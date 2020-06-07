@@ -1,0 +1,48 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using Mao.Relatorios.Classes;
+using Mao.Relatorios.Reports;
+
+namespace Teste
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var listaFrequencia = Frequencia.GetListaFrequencia();
+
+            TesteNormal(listaFrequencia);
+            TesteHtml(listaFrequencia);
+
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
+        }
+
+        private static void TesteNormal(List<Frequencia> listaFrequencia)
+        {
+            Console.WriteLine($"Gerando arquivo NORMAL.... {DateTime.Now}");
+            
+            var fileBytes = RelatorioFrequencia.Generate(listaFrequencia);
+
+            var filename = $"teste_normal_{Guid.NewGuid()}.pdf";
+
+            File.WriteAllBytes($@"C:\Users\Rafael\Desktop\{filename}", fileBytes);
+
+            Console.WriteLine($"PDF salvo com sucesso - {filename} .... {DateTime.Now}");
+        }
+
+        private static void TesteHtml(List<Frequencia> listaFrequencia)
+        {
+            Console.WriteLine($"Gerando arquivo HTML.... {DateTime.Now}");
+
+            var fileBytes = RelatorioFrequencia.GenerateFromHtml(listaFrequencia);
+
+            var filename = $"teste_html_{Guid.NewGuid()}.pdf";
+
+            File.WriteAllBytes($@"C:\Users\Rafael\Desktop\{filename}", fileBytes);
+
+            Console.WriteLine($"PDF salvo com sucesso - {filename} .... {DateTime.Now}");
+        }
+    }
+}

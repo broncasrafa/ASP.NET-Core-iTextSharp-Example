@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30002.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mao.Relatorios", "Mao.Relatorios\Mao.Relatorios.csproj", "{90BBF8FF-4896-4E90-A340-73CD2C7107DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Teste", "Teste\Teste.csproj", "{DE465ECF-7A70-44AF-B90E-45BA706AE226}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{90BBF8FF-4896-4E90-A340-73CD2C7107DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90BBF8FF-4896-4E90-A340-73CD2C7107DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90BBF8FF-4896-4E90-A340-73CD2C7107DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90BBF8FF-4896-4E90-A340-73CD2C7107DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE465ECF-7A70-44AF-B90E-45BA706AE226}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE465ECF-7A70-44AF-B90E-45BA706AE226}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE465ECF-7A70-44AF-B90E-45BA706AE226}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE465ECF-7A70-44AF-B90E-45BA706AE226}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5BE0DCAB-A14C-4330-BAC5-3F50B66D42E7}
+	EndGlobalSection
+EndGlobal
