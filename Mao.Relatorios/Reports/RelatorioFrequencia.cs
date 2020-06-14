@@ -12,14 +12,14 @@ namespace Mao.Relatorios.Reports
         private static PdfConverter GetConfigurations()
         {
             PdfConverter pdfConverter = new PdfConverter();
-            pdfConverter.DocumentOptions.PageOrientation = PdfPageOrientation.Landscape;
+            pdfConverter.DocumentOptions.PageOrientation = PdfPageOrientation.Paisagem;
             pdfConverter.DocumentOptions.ShowFooter = true;
             pdfConverter.DocumentOptions.ShowHeader = true;
             pdfConverter.DocumentOptions.ShowPagingOnBottom = true;
             pdfConverter.DocumentOptions.ShowPrintDateTime = true;
             pdfConverter.DocumentOptions.HeaderOptions.DrawHeaderLine = true;
             pdfConverter.DocumentOptions.HeaderOptions.HeaderTitleText = "RELATÓRIO DE FREQUÊNCIA";
-            pdfConverter.DocumentOptions.HeaderOptions.HeaderImage = System.Drawing.Image.FromFile($"{Directory.GetCurrentDirectory()}\\images\\fde_logo_2.jpg");
+            pdfConverter.DocumentOptions.HeaderOptions.HeaderImageLeft = System.Drawing.Image.FromFile($"{Directory.GetCurrentDirectory()}\\images\\fde_logo_2.jpg");
             pdfConverter.DocumentOptions.FooterOptions.DrawFooterLine = true;
             pdfConverter.DocumentOptions.FooterOptions.ShowPageNumber = true;
             pdfConverter.DocumentOptions.DocumentInfo.AuthorName = "Rafael Francisco";

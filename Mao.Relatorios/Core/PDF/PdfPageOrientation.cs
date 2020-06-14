@@ -2,7 +2,7 @@
 {
     public enum PdfPageOrientation
     {
-        Portrait = 0,
-        Landscape = 1
+        Retrato = 0,
+        Paisagem = 1
     }
 }

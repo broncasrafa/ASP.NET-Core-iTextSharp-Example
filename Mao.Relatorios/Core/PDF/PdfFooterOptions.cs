@@ -4,5 +4,6 @@
     {
         public bool ShowPageNumber { get; set; }
         public bool DrawFooterLine { get; set; }
+        public bool ShowFooterText { get; set; }
     }
 }

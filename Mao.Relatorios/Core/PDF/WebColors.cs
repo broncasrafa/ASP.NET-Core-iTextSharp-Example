@@ -9,7 +9,7 @@ using iTextSharp.text;
 
 namespace Mao.Relatorios.Core.PDF
 {
-    public class WebColors : Dictionary<string, int[]>
+    internal class WebColors : Dictionary<string, int[]>
     {
         public static WebColors NAMES = new WebColors();
         static WebColors()

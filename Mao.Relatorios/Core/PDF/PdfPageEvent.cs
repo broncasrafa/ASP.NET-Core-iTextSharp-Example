@@ -82,6 +82,46 @@ namespace Mao.Relatorios.Core.PDF
                     cb.EndText();
                     float len = bf.GetWidthPoint(textoPaginacao, 8f);
 
+
+                    #region texto do rodapé
+                    if(_documentOptions.FooterOptions.ShowFooterText)
+                    {
+                        Paragraph paragrafoRodape1 = new Paragraph(new Chunk("Fundação para o Desenvolvimento da Educação", FontFactory.GetFont("Arial", 7f, Font.BOLD, BaseColor.BLACK)));
+                        Paragraph paragrafoRodape2 = new Paragraph(new Chunk("Avenida São Luís, 99 - República 01046-001 Tel. (11) 3158-4000", FontFactory.GetFont("Arial", 7f, Font.NORMAL, BaseColor.BLACK)));
+                        Paragraph paragrafoRodape3 = new Paragraph(new Chunk("www.fde.sp.gov.br", FontFactory.GetFont("Arial", 6f, Font.NORMAL, BaseColor.BLACK)).SetAnchor("http://www.fde.sp.gov.br/"));
+
+                        float dimInit = 35;
+                        ColumnText columnTextRodape1 = new ColumnText(cb);
+                        columnTextRodape1.AddText(paragrafoRodape1);
+                        if(_documentOptions.PageOrientation == PdfPageOrientation.Retrato)
+                            columnTextRodape1.SetSimpleColumn(590, dimInit, 0, 0, 0, Element.ALIGN_CENTER);
+                        else
+                            columnTextRodape1.SetSimpleColumn(890, dimInit, 0, 0, 0, Element.ALIGN_CENTER);
+
+                        columnTextRodape1.Go();
+
+                        ColumnText columnTextRodape2 = new ColumnText(cb);
+                        columnTextRodape2.AddText(paragrafoRodape2);
+                        if (_documentOptions.PageOrientation == PdfPageOrientation.Retrato)
+                            columnTextRodape2.SetSimpleColumn(590, (dimInit - 10f), 5, 0, 0, Element.ALIGN_CENTER);
+                        else
+                            columnTextRodape2.SetSimpleColumn(890, (dimInit - 10f), 5, 0, 0, Element.ALIGN_CENTER);
+
+                        columnTextRodape2.Go();
+
+                        ColumnText columnTextRodape3 = new ColumnText(cb);
+                        columnTextRodape3.AddText(paragrafoRodape3);
+                        if (_documentOptions.PageOrientation == PdfPageOrientation.Retrato)
+                            columnTextRodape3.SetSimpleColumn(590, (dimInit - 20f), 0, 0, 0, Element.ALIGN_CENTER);
+                        else
+                            columnTextRodape3.SetSimpleColumn(890, (dimInit - 20f), 0, 0, 0, Element.ALIGN_CENTER);
+
+                        columnTextRodape3.Go();
+
+                    }
+                    #endregion
+
+
                     cb.AddTemplate(footerTemplate, document.PageSize.GetRight(100) + len, document.PageSize.GetBottom(30));
                 }
             }
@@ -102,7 +142,7 @@ namespace Mao.Relatorios.Core.PDF
                 cellHeader.FixedHeight = _HeaderHeight;
 
                 // Retrato
-                if (_documentOptions.PageOrientation == PdfPageOrientation.Portrait)
+                if (_documentOptions.PageOrientation == PdfPageOrientation.Retrato)
                 {
                     Paragraph paragrafoCabecalho1 = new Paragraph(new Chunk(_documentOptions.HeaderOptions?.HeaderTitleText, FontFactory.GetFont("Arial", 12f, Font.BOLD, BaseColor.BLACK)));
                     Paragraph paragrafoCabecalho2 = new Paragraph(new Chunk(_documentOptions.HeaderOptions?.HeaderSubtitleText, FontFactory.GetFont("Arial", 9f, Font.BOLD, BaseColor.BLACK)));
@@ -117,11 +157,11 @@ namespace Mao.Relatorios.Core.PDF
                     columnTextCabecalho2.SetSimpleColumn(34, 800, 540, 217, 10, Element.ALIGN_CENTER);
                     columnTextCabecalho2.Go();
 
-                    #region Imagem LOGO
-                    if (_documentOptions.HeaderOptions != null && _documentOptions.HeaderOptions.HeaderImage != null)
+                    #region Imagem LOGO LEFT
+                    if (_documentOptions.HeaderOptions != null && _documentOptions.HeaderOptions.HeaderImageLeft != null)
                     {
                         MemoryStream mst = new MemoryStream();
-                        _documentOptions.HeaderOptions.HeaderImage.Save(mst, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        _documentOptions.HeaderOptions.HeaderImageLeft.Save(mst, System.Drawing.Imaging.ImageFormat.Jpeg);
                         byte[] b = mst.ToArray();
 
                         //posicionando a imagem no arquivo
@@ -130,7 +170,21 @@ namespace Mao.Relatorios.Core.PDF
                         imageLogo.ScalePercent(52f);
                         document.Add(imageLogo);
                     }
+                    #endregion
 
+                    #region Imagem LOGO RIGHT
+                    if (_documentOptions.HeaderOptions != null && _documentOptions.HeaderOptions.ShowImageRight && _documentOptions.HeaderOptions.HeaderImageRight != null)
+                    {
+                        MemoryStream mst = new MemoryStream();
+                        _documentOptions.HeaderOptions.HeaderImageRight.Save(mst, System.Drawing.Imaging.ImageFormat.Png);
+                        byte[] b = mst.ToArray();
+
+                        //posicionando a imagem no arquivo
+                        iTextSharp.text.Image imageLogo = iTextSharp.text.Image.GetInstance(b);
+                        imageLogo.SetAbsolutePosition(document.PageSize.Width - 125f, document.PageSize.Height - 46f);
+                        imageLogo.ScalePercent(35f);
+                        document.Add(imageLogo);
+                    }
                     #endregion
 
                     #region Data de impressão
@@ -172,17 +226,32 @@ namespace Mao.Relatorios.Core.PDF
                     columnTextCabecalho2.SetSimpleColumn(790, 558, 10, 0, 10, Element.ALIGN_CENTER);
                     columnTextCabecalho2.Go();
 
-                    #region Imagem LOGO
-                    if (_documentOptions.HeaderOptions != null && _documentOptions.HeaderOptions.HeaderImage != null)
+                    #region Imagem LOGO LEFT
+                    if (_documentOptions.HeaderOptions != null && _documentOptions.HeaderOptions.HeaderImageLeft != null)
                     {
                         MemoryStream mst = new MemoryStream();
-                        _documentOptions.HeaderOptions.HeaderImage.Save(mst, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        _documentOptions.HeaderOptions.HeaderImageLeft.Save(mst, System.Drawing.Imaging.ImageFormat.Jpeg);
                         byte[] b = mst.ToArray();
 
                         //posicionando a imagem no arquivo
                         iTextSharp.text.Image imageLogo = iTextSharp.text.Image.GetInstance(b);
                         imageLogo.SetAbsolutePosition(document.PageSize.Width - 822f, document.PageSize.Height - 46f);
                         imageLogo.ScalePercent(52f);
+                        document.Add(imageLogo);
+                    }
+                    #endregion
+
+                    #region Imagem LOGO RIGHT
+                    if (_documentOptions.HeaderOptions != null && _documentOptions.HeaderOptions.ShowImageRight && _documentOptions.HeaderOptions.HeaderImageRight != null)
+                    {
+                        MemoryStream mst = new MemoryStream();
+                        _documentOptions.HeaderOptions.HeaderImageRight.Save(mst, System.Drawing.Imaging.ImageFormat.Png);
+                        byte[] b = mst.ToArray();
+
+                        //posicionando a imagem no arquivo
+                        iTextSharp.text.Image imageLogo = iTextSharp.text.Image.GetInstance(b);
+                        imageLogo.SetAbsolutePosition(document.PageSize.Width - 125f, document.PageSize.Height - 46f);
+                        imageLogo.ScalePercent(35f);
                         document.Add(imageLogo);
                     }
                     #endregion

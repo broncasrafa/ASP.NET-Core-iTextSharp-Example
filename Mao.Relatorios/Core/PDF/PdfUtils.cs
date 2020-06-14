@@ -8,7 +8,7 @@ namespace Mao.Relatorios.Core.PDF
     {
         public static Rectangle GetPageOrientation(PdfPageOrientation pageOrientation)
         {
-            if (pageOrientation == PdfPageOrientation.Portrait)
+            if (pageOrientation == PdfPageOrientation.Retrato)
                 return PageSize.A4;
 
             return PageSize.A4.Rotate();

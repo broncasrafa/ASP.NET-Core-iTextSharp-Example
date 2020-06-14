@@ -89,7 +89,10 @@ namespace Mao.Relatorios.Core.PDF
         /// </summary>
         /// <param name="document">objeto document</param>
         /// <param name="paragraphText">texto do paragrafo</param>
-        public static void AddParagraph(Document document, string paragraphText)
+        /// <param name="paddingBottom">distancia do paragrafo para baixo</param>
+        /// <param name="paddingTop">distancia do paragrafo para cima</param>
+        /// <param name="horizontalAlignment">alinhamento do paragrafo. Usar Element. Por exemplo (Element.ALIGN_CENTER)</param>
+        public static void AddParagraph(Document document, string paragraphText, float paddingBottom, float paddingTop, int horizontalAlignment)
         {
             Paragraph paragraph = new Paragraph(new Phrase(new Chunk(paragraphText, FontFactory.GetFont("Arial", 8f, BaseColor.BLACK))));
 
@@ -97,8 +100,33 @@ namespace Mao.Relatorios.Core.PDF
 
             PdfPCell cell = new PdfPCell();
             cell.Border = PdfPCell.NO_BORDER;
-            cell.PaddingBottom = 10f;
-            cell.PaddingTop = 10f;
+            cell.PaddingBottom = paddingBottom;
+            cell.PaddingTop = paddingTop;
+            SetParagraphAlignment(paragraph, horizontalAlignment);
+            cell.AddElement(paragraph);
+
+            table.AddCell(cell);
+            table.WidthPercentage = 96.7f;
+            table.DefaultCell.FixedHeight = 15f;
+            document.Add(table);
+        }
+        /// <summary>
+        /// Cria um paragrafo no documento pdf
+        /// </summary>
+        /// <param name="document">objeto document</param>
+        /// <param name="phrase">objeto Phrase que consiste em um array de chunks</param>
+        /// <param name="paddingBottom">distancia do paragrafo para baixo</param>
+        /// <param name="paddingTop">distancia do paragrafo para cima</param>
+        /// <param name="horizontalAlignment">alinhamento do paragrafo. Usar Element. Por exemplo (Element.ALIGN_CENTER)</param>
+        public static void AddParagraph(Document document, Phrase phrase, float paddingBottom, float paddingTop, int horizontalAlignment)
+        {
+            Paragraph paragraph = new Paragraph(phrase);
+            PdfPTable table = new PdfPTable(1);
+            PdfPCell cell = new PdfPCell();
+            cell.Border = PdfPCell.NO_BORDER;
+            cell.PaddingBottom = paddingBottom;
+            cell.PaddingTop = paddingTop;
+            SetParagraphAlignment(paragraph, horizontalAlignment);            
             cell.AddElement(paragraph);
 
             table.AddCell(cell);
@@ -251,6 +279,26 @@ namespace Mao.Relatorios.Core.PDF
             return table;
         }
 
+
+        private static void SetParagraphAlignment(Paragraph paragraph, int alignment)
+        {
+            switch (alignment)
+            {
+                case Element.ALIGN_UNDEFINED: paragraph.Alignment = Element.ALIGN_UNDEFINED; break;
+                case Element.ALIGN_LEFT: paragraph.Alignment = Element.ALIGN_LEFT; break;
+                case Element.ALIGN_CENTER: paragraph.Alignment = Element.ALIGN_CENTER; break;
+                case Element.ALIGN_RIGHT: paragraph.Alignment = Element.ALIGN_RIGHT; break;
+                case Element.ALIGN_JUSTIFIED: paragraph.Alignment = Element.ALIGN_JUSTIFIED; break;
+                case Element.ALIGN_TOP: paragraph.Alignment = Element.ALIGN_TOP; break;
+                case Element.ALIGN_MIDDLE: paragraph.Alignment = Element.ALIGN_MIDDLE; break;
+                case Element.ALIGN_BOTTOM: paragraph.Alignment = Element.ALIGN_BOTTOM; break;
+                case Element.ALIGN_BASELINE: paragraph.Alignment = Element.ALIGN_BASELINE; break;
+                case Element.ALIGN_JUSTIFIED_ALL: paragraph.Alignment = Element.ALIGN_JUSTIFIED_ALL; break;
+                default:
+                    paragraph.Alignment = Element.ALIGN_LEFT;
+                    break;
+            }
+        }
         private static bool GetValidPropertyType(PropertyInfo modelo)
         {
             bool _isValid = false;
