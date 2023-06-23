@@ -8,15 +8,18 @@ namespace Teste
 {
     class Program
     {
+        private static string _PATH = @"C:\temp";
+
+
         static void Main(string[] args)
         {
-            //var listaFrequencia = Frequencia.GetListaFrequencia();
-            //TesteNormal(listaFrequencia);
-            //TesteHtml(listaFrequencia);
+            var listaFrequencia = Frequencia.GetListaFrequencia();
+            TesteNormal(listaFrequencia);
+            TesteHtml(listaFrequencia);
 
             var prestacaoServico = PrestacaoServicos.GetPrestacaoServicos();
             TesteNormal2(prestacaoServico);
-            //TesteHtml2(prestacaoServico);
+            TesteHtml2(prestacaoServico);
 
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
@@ -30,7 +33,7 @@ namespace Teste
 
             var filename = $"teste_normal_{Guid.NewGuid()}.pdf";
 
-            File.WriteAllBytes($@"C:\Users\Rafael\Desktop\{filename}", fileBytes);
+            File.WriteAllBytes($@"{_PATH}\{filename}", fileBytes);
 
             Console.WriteLine($"PDF salvo com sucesso - {filename} .... {DateTime.Now}");
         }
@@ -43,7 +46,7 @@ namespace Teste
 
             var filename = $"teste_html_{Guid.NewGuid()}.pdf";
 
-            File.WriteAllBytes($@"C:\Users\Rafael\Desktop\{filename}", fileBytes);
+            File.WriteAllBytes($@"{_PATH}\{filename}", fileBytes);
 
             Console.WriteLine($"PDF salvo com sucesso - {filename} .... {DateTime.Now}");
         }
@@ -57,7 +60,7 @@ namespace Teste
 
             var filename = $"teste_normal_{Guid.NewGuid()}.pdf";
 
-            File.WriteAllBytes($@"C:\Users\Rafael\Desktop\{filename}", fileBytes);
+            File.WriteAllBytes($@"{_PATH}\{filename}", fileBytes);
 
             Console.WriteLine($"PDF salvo com sucesso - {filename} .... {DateTime.Now}");
         }
@@ -69,7 +72,7 @@ namespace Teste
 
             var filename = $"teste_html_{Guid.NewGuid()}.pdf";
 
-            File.WriteAllBytes($@"C:\Users\Rafael\Desktop\{filename}", fileBytes);
+            File.WriteAllBytes($@"{_PATH}\{filename}", fileBytes);
 
             Console.WriteLine($"PDF salvo com sucesso - {filename} .... {DateTime.Now}");
         }

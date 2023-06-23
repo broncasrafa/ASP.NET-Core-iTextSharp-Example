@@ -1,14 +1,22 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+    <PackageReference Include="iTextSharp" Version="5.5.13.3" />
+    <PackageReference Include="itextsharp.pdfa" Version="5.5.13.3" />
+    <PackageReference Include="itextsharp.xmlworker" Version="5.5.13.3" />
+    <PackageReference Include="itextsharp.xtra" Version="5.5.13.3" />
+    <PackageReference Include="Microsoft.ReportViewer.Common" Version="10.0.40219.1" />
+    <PackageReference Include="Microsoft.ReportViewer.WebForms" Version="10.0.40219.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
+  <!--<ItemGroup>
+  <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
     <Reference Include="itextsharp">
       <HintPath>..\..\Teste.GeneratePdf\src\Web.Pdf\bin\Debug\netcoreapp3.1\itextsharp.dll</HintPath>
     </Reference>
@@ -21,15 +29,6 @@
     <Reference Include="itextsharp.xtra">
       <HintPath>..\..\Teste.GeneratePdf\src\Web.Pdf\bin\Debug\netcoreapp3.1\itextsharp.xtra.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.Common">
-      <HintPath>..\..\Teste.GeneratePdf\src\Web.Pdf\bin\Debug\netcoreapp3.1\Microsoft.ReportViewer.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.ReportViewer.WebForms">
-      <HintPath>..\..\Teste.GeneratePdf\src\Web.Pdf\bin\Debug\netcoreapp3.1\Microsoft.ReportViewer.WebForms.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\Teste.GeneratePdf\src\Web.Pdf\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+  </ItemGroup>-->
 
 </Project>
